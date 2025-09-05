@@ -1,0 +1,27 @@
+{
+  "name": "gw_test",
+  "version": "1.0.0",
+  "description": "1. **Клонуйте репозиторій**\r    ```bash\r    git clone <URL_РЕПОЗИТОРІЮ>\r    cd gw_test\r    ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serdtsekol1/gw_test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/serdtsekol1/gw_test/issues"
+  },
+  "homepage": "https://github.com/serdtsekol1/gw_test#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

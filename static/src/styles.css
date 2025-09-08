@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.search-results {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.hidden-search-results {
+    opacity: 0;
+    transform: translateY(-15px);
+}
+
+.showed-search-results {
+    opacity: 1;
+    transform: translateY(0);
+}

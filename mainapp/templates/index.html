@@ -1,4 +1,97 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    <h1>GW TEST</h1>
+    <div class="relative w-full h-[623px] overflow-hidden">
+        {% for slide in main_slider %}
+            <img 
+                src="{{ slide.image }}?v={{ slide.id }}" 
+                alt="{{ slide.name }}" 
+                class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-700 {% if forloop.first %}opacity-100{% else %}opacity-0{% endif %}"
+                data-slide-index="{{ forloop.counter0 }}"
+            >
+        {% endfor %}
+
+        <button id="prevSlide" class="absolute top-1/2 left-5 transform -translate-y-1/2 p-2 bg-transparent hover:bg-white/20 rounded-full transition duration-300 hover:scale-150">
+            <img src="{% static 'images/left-arrow-main_slider.png' %}" alt="Prev" class="w-[13px] h-[26px]">
+        </button>
+
+        <button id="nextSlide" class="absolute top-1/2 right-5 transform -translate-y-1/2 p-2 bg-transparent hover:bg-white/20 rounded-full transition duration-300 hover:scale-150">
+            <img src="{% static 'images/right-arrow-main_slider.png' %}" alt="Next" class="w-[13px] h-[26px]">
+        </button>
+
+    </div>
+
+
+    <div class="flex justify-center gap-6 mt-8">
+        <button class="category-btn text-gray-400" data-tab="new">Новинки</button>
+        <button class="category-btn text-gray-400" data-tab="sale">Знижки</button>
+        <button class="category-btn text-gray-400" data-tab="top">Топ продажу</button>
+    </div>
+
+    <div id="new-page" class="products-tab grid gap-[30px] grid-cols-[1fr_1fr_1fr_1fr] pt-[30px] max-w-[1010px] relative left-1/2 -translate-x-1/2">
+        {% for product in products %}
+            {% if product.new %}
+                {% include "_product_card.html" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="sale-page" class="products-tab grid gap-[30px] grid-cols-[1fr_1fr_1fr_1fr] pt-[30px] max-w-[1010px] relative left-1/2 -translate-x-1/2">
+        {% for product in products %}
+            {% if product.price_without_discount > product.price%}
+                {% include "_product_card.html" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="top-page" class="products-tab grid gap-[30px] grid-cols-[1fr_1fr_1fr_1fr] pt-[30px] max-w-[1010px] relative left-1/2 -translate-x-1/2">
+        {% for product in products %}
+            {% if product.top %}
+                {% include "_product_card.html" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="w-full flex justify-center items-center mt-10 mb-10">
+        <button id="view-whole-tab-btn" class="w-[295px] h-[40px] border border-[#545454] text-[14px] rounded-[3px]"></button>
+    </div>
+
+    <div class="w-full flex justify-center mt-10">
+        <div class="w-[1030px]">
+            <h2 class="uppercase text-center font-mulish text-2xl font-[300]">Lorem ipsum dolor sit amet consectetur</h2>
+            <div class="font-mulish font-[400] text-[15px] text-justify flex flex-col gap-3 mt-5">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis nisi aliquam adipisci reprehenderit doloremque, doloribus aperiam nostrum minus voluptas dignissimos, iste, voluptates repudiandae suscipit! Laborum, mollitia, enim numquam saepe rerum minima maxime ullam, dolor aperiam delectus magni autem eveniet repellat aliquam nobis eius impedit culpa id explicabo expedita natus! Earum cum enim consequatur suscipit at deserunt totam! Incidunt quis vero beatae, quae quibusdam quam omnis? Sed quidem veniam aperiam illo doloribus natus ea perspiciatis aliquid dicta alias odio, exercitationem eligendi ducimus repellat porro quo reiciendis laborum, impedit nesciunt expedita? Optio.</p>    
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis nisi aliquam adipisci reprehenderit doloremque, doloribus aperiam nostrum minus voluptas dignissimos, iste, voluptates repudiandae suscipit! Laborum, mollitia, enim numquam saepe rerum minima maxime ullam, dolor aperiam delectus magni autem eveniet repellat aliquam nobis eius impedit culpa id explicabo expedita natus! Earum cum enim consequatur suscipit at deserunt totam! Incidunt quis vero beatae, quae quibusdam quam omnis? Sed quidem veniam aperiam illo doloribus natus ea perspiciatis aliquid dicta alias odio, exercitationem eligendi ducimus repellat porro quo reiciendis laborum, impedit nesciunt expedita? Optio.</p>    
+            </div>
+        </div>
+    </div>
+
+
+    <div class="categories-container w-[1236px] mx-auto flex flex-col gap-12 mt-20 mb-24">
+    {% for category in categories %}
+        <div class="category-box flex {% if forloop.counter|divisibleby:2 %}flex-row{% else %}flex-row-reverse{% endif %} gap-[86px]">
+            
+            <div class="w-[600px] h-[500px] bg-center bg-cover" style="background-image: url('{{ category.image }}?={{ category.id }}');"></div>
+
+            <div class="flex flex-col justify-center gap-6">
+                
+                <div class="category-products-examples grid grid-cols-2 gap-4">
+                    {% for product in products %}
+                        {% if product.category_id == category.id %}
+                            {% include "_product_card.html" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="mt-4">
+                    <button
+                       class="w-full h-[30px] border border-[#545454] text-[14px] rounded-[3px]">
+                        Перейти до категорії
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

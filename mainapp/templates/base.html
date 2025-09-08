@@ -6,14 +6,124 @@
     <title>{% block title %}gw test{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <h1 class="text-5xl font-bold underline text-blue-500">
-        Hello Tailwind!
-    </h1>
-    <p class="test-blue">mama</p>
+<body class="">
+    <header class="bg-white pb-[5px]">
+        <div class="flex justify-start gap-[26px] text-[#333333] pl-[100px]">
+            <a href="#" class="font-normal text-[15px] leading-[36px] tracking-normal">Про нас</a>
+            <a href="#" class="font-normal text-[15px] leading-[36px] tracking-normal">Відгуки</a>
+            <a href="#" class="font-normal text-[15px] leading-[36px] tracking-normal">Оплата та доставка</a>
+            <a href="#" class="font-normal text-[15px] leading-[36px] tracking-normal">Обмін та повернення</a>
+            <a href="#" class="font-normal text-[15px] leading-[36px] tracking-normal">Блог</a>
+        </div>
+        <div class="pl-[100px] pr-[100px] grid grid-cols-[3fr_1fr_3fr] border-t border-b border-[#D9D9D9]">
+            <div class="h-full flex items-center">
+                <div class="flex h-[24px] gap-[15px] items-center">
+                    <img src="{% static 'images/phone.png' %}" alt="phone" class="w-[18px] h-[18px]">
+                    <div class="flex items-center">
+                        <div class="text-[300] text-[16px]">UA / </div>
+                        <div class="text-[300] text-[11px] pl-[5px]">EN</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-[#000000] text-[400] text-[34px] text-center">
+                LOGO
+            </div>
+            <div class="h-full flex justify-end items-center gap-[20px]">
+                <div class="w-[296px] h-[38px] bg-[#F4F4F4] flex gap-0">
+                    <input id="search-input" type="text" class="w-[258px] h-[38px] border-none focus:outline-none focus:ring-0 bg-transparent pl-[12px]">
+                    <div class="w-[38px] h-[38px] flex items-center justify-center">
+                        <img src="{% static 'images/search.png' %}" alt="search" class="w-[22px] h-[22px]">
+                    </div>
+                </div>
+                <div id="search-results" 
+                     class="absolute w-[373px] bg-white p-[30px] shadow-lg z-50 search-results hidden-search-results">
+                </div>
+                
+                <div>
+                    <img src="{% static 'images/transparent-heart.png' %}" alt="heart" class="w-[26px] h-[22px]">
+                </div>
+                <div>
+                    <img src="{% static 'images/transparent-human-profile.png' %}" alt="profile" class="w-[18px] h-[22px]">
+                </div>
+                <div>
+                    <img src="{% static 'images/transparent-shoper.png' %}" alt="favorite" class="w-[20px] h-[22px]">
+                </div>
+            </div>
+        </div>
+        <div class="text-[14px] pt-[5px] pb-[5px]">
+            <div class="h-[19px] flex justify-center gap-[20px]">
+                <a href="#" class="menu-item transition-transform duration-200 hover:scale-110">MENU</a>
+                <a href="#" class="menu-item transition-transform duration-200 hover:scale-110">MENU</a>
+                <a href="#" class="menu-item transition-transform duration-200 hover:scale-110">MENU</a>
+                <a href="#" class="menu-item transition-transform duration-200 hover:scale-110">MENU</a>
+                <a href="#" class="menu-item transition-transform duration-200 hover:scale-110">MENU</a>
+            </div>
+        </div>
+    </header>
+    <div class="hidden z-20 grid-cols-[1fr_1fr] p-[20px] bg-white shadow absolute -translate-x-1/2 search-results" id="submenu-container">
+        <div id="submenu" class="showed-"></div>
+        <div id="secondary-submenu"></div>
+    </div>
+
     {% block content %}
     {% endblock %}
+
+    <footer class="bg-[#f5f5f5]">
+        <div class="footer-content w-full px-[140px] py-11 flex justify-between">
+            <div>
+                <div class="text-[32px] w-full text-center">
+                    LOGO
+                </div>
+                <div class="flex justify-between gap-5 mt-3">
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <img src="{% static 'images/facebook_sm.png' %}" alt="facebook" class="w-[26px] h-6">
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <img src="{% static 'images/instagram_sm.png' %}" alt="instagram" class="w-6 h-6">
+                    </div>
+                    <div class="w-8 h-8 flex items-center justify-center">
+                        <img src="{% static 'images/tiktok_sm.png' %}" alt="tiktok" class="w-[21px] h-6">
+                    </div>
+                </div>
+            </div>
+            <div class="w-[460px] flex justify-between gap-[50px] text-[14px] text-[#676767]">
+                <div class="w-[160px] flex flex-col gap-2">
+                    <h3 class="text-[16px] text-black mb-2">Каталог</h3>
+                    <a href="#">Menu</a>
+                    <a href="#">Menu</a>
+                    <a href="#">Menu</a>
+                    <a href="#">Menu</a>
+                    <a href="#">Menu</a>
+                </div>
+                <div class="w-[250px] flex flex-col gap-2">
+                    <h3 class="text-[16px] text-black mb-2">Контакти</h3>
+                    <div>
+                        <p>Телефон</p>
+                        <p>+38 (011) 011 01 01</p>
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <p>jellys@jellys.ua</p>
+                    </div>
+                    <div>
+                        <p>Адреса</p>
+                        <p>Kyiv. white bat street. 25</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-[37px] flex items-center justify-center bg-[#2c2c2c] text-white text-[16px]">
+            Розробка сайту Golden Web digital
+        </div>
+    </footer>
     
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="{% static 'js/main_slider.js' %}"></script>
+    <script src="{% static 'js/tabs.js' %}"></script>
+    <script src="{% static 'js/favorities.js' %}"></script>
+    <script src="{% static 'js/limit_products.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
 </body> 
 </html>
